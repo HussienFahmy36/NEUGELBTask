@@ -10,5 +10,8 @@ import UIKit
 
 class NUMovieCell: UICollectionViewCell {
     @IBOutlet weak var movieBannerImage: UIImageView!
-    
+
+    func config(viewModel: NUMovieViewModel) {
+        backgroundColor = .blue
+    }
 }

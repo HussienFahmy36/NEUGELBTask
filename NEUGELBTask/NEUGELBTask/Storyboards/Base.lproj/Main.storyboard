@@ -42,17 +42,17 @@
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Jt7-Ux-5qv">
                                 <rect key="frame" x="34" y="186" width="346" height="661"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="CUg-5H-fhk">
-                                    <size key="itemSize" width="59" height="204"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="2" minimumInteritemSpacing="0.0" id="CUg-5H-fhk">
+                                    <size key="itemSize" width="150" height="200"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                    <inset key="sectionInset" minX="1" minY="1" maxX="1" maxY="1"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="NUMovieCell" id="G3i-rD-zvv" customClass="NUMovieCell" customModule="NEUGELBTask" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="150" height="200"/>
+                                        <rect key="frame" x="1" y="1" width="150" height="200"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="RV1-dy-Dmg">
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="nci-zR-8Yj">
                                             <rect key="frame" x="0.0" y="0.0" width="150" height="200"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
@@ -62,9 +62,9 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="Wer-d3-jrL" secondAttribute="trailing" id="2qk-hG-Xql"/>
-                                                <constraint firstItem="Wer-d3-jrL" firstAttribute="leading" secondItem="RV1-dy-Dmg" secondAttribute="leading" id="56Y-LW-TnV"/>
+                                                <constraint firstItem="Wer-d3-jrL" firstAttribute="leading" secondItem="nci-zR-8Yj" secondAttribute="leading" id="56Y-LW-TnV"/>
                                                 <constraint firstAttribute="bottom" secondItem="Wer-d3-jrL" secondAttribute="bottom" id="rpX-vd-cDL"/>
-                                                <constraint firstItem="Wer-d3-jrL" firstAttribute="top" secondItem="RV1-dy-Dmg" secondAttribute="top" id="tWV-HX-adv"/>
+                                                <constraint firstItem="Wer-d3-jrL" firstAttribute="top" secondItem="nci-zR-8Yj" secondAttribute="top" id="tWV-HX-adv"/>
                                             </constraints>
                                         </collectionViewCellContentView>
                                         <size key="customSize" width="150" height="200"/>
