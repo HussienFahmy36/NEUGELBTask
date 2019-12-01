@@ -7,12 +7,19 @@
 //
 
 import UIKit
+import SDWebImage
 
 class NUMovieCell: UICollectionViewCell {
     @IBOutlet weak var movieBannerImage: UIImageView!
 
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        movieBannerImage.layer.cornerRadius = 4
+        movieBannerImage.layer.masksToBounds = true
+    }
     func config(viewModel: NUMovieViewModel) {
-        backgroundColor = .blue
-//        moviewbann
+        movieBannerImage.sd_setImage(with: viewModel.posterURLSmall, completed: nil)
+//        movieBannerImage.sd_setImage(with: viewModel.movieBannerImageURL) { (imageData, error, cache, url) in
+//        }
     }
 }

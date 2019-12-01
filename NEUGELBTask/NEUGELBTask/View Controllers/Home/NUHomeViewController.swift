@@ -25,7 +25,6 @@ class NUHomeViewController: UIViewController {
     func setupUI() {
         collectionView.dataSource = self
         collectionView.delegate = self
-        collectionView.register(NUMovieCell.self, forCellWithReuseIdentifier: "NUMovieCell")
         viewModel.nowPlaying(pageIndex: 1) { (movies, error) in
             DispatchQueue.main.async {[weak self] in
                 guard let self = self else {
