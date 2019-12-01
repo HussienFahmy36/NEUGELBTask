@@ -13,5 +13,6 @@ class NUMovieCell: UICollectionViewCell {
 
     func config(viewModel: NUMovieViewModel) {
         backgroundColor = .blue
+//        moviewbann
     }
 }
