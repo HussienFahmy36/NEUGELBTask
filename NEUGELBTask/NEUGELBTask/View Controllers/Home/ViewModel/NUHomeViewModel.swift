@@ -9,6 +9,7 @@
 import Foundation
 class NUHomeViewModel {
     var movies: [NUMovieViewModel] = []
+    var searchResultMovies: [NUMovieViewModel] = []
     let worker = NUMoviesDBDataWorker()
     let minimumSearchWordLength = 3
 
@@ -32,25 +33,23 @@ class NUHomeViewModel {
 
     func search(keyword: String, completion: @escaping ([NUMovieViewModel], _ errorMessage: String?) -> ()) {
         if keyword.count >= minimumSearchWordLength {
-            movies.removeAll()
+            searchResultMovies.removeAll()
             worker.searchMovie(keyword: keyword) {[weak self] (response, error) in
                 if error != nil {
-                    self?.movies = []
+                    self?.searchResultMovies = []
                     completion([], error!.rawValue)
                 }
                 guard let self = self else {
                     return
                 }
                 guard let moviesArray = response?.results else {
+                    completion([], "No results")
                     return
                 }
-                if moviesArray.count == 0 {
-                    self.movies = []
-                }
                 for movieModel in moviesArray {
-                    self.movies.append(NUMovieViewModel(model: movieModel))
+                    self.searchResultMovies.append(NUMovieViewModel(model: movieModel))
                 }
-                completion(self.movies, nil)
+                completion(self.searchResultMovies, nil)
             }
         }
     }

@@ -14,9 +14,17 @@ class NUHomeViewController: UIViewController {
     @IBOutlet weak var searchTextField: UITextField!
     @IBOutlet weak var contextTitleLabel: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
-    
     @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
-    
+    var dataSourceArray: [NUMovieViewModel] = []
+    var searchMode: Bool = false {
+        willSet(newValue) {
+            if newValue {
+                self.contextTitleLabel.text = "Search results"
+            } else {
+                self.contextTitleLabel.text = "Now playing"
+            }
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -34,6 +42,7 @@ class NUHomeViewController: UIViewController {
                 guard let self = self else {
                     return
                 }
+                self.dataSourceArray = self.viewModel.movies
                 self.loadingIndicator.stopAnimating()
                 self.loadingIndicator.alpha = 0
                 self.collectionView.reloadData()
@@ -48,7 +57,7 @@ extension NUHomeViewController: UICollectionViewDataSource, UICollectionViewDele
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "NUMovieCell", for: indexPath) as? NUMovieCell else {
             return UICollectionViewCell()
         }
-        cell.config(viewModel: viewModel.movies[indexPath.row])
+        cell.config(viewModel: dataSourceArray[indexPath.row])
         return cell
     }
 
@@ -57,11 +66,11 @@ extension NUHomeViewController: UICollectionViewDataSource, UICollectionViewDele
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel.movies.count
+        return dataSourceArray.count
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        navigateToDetails(movieModel: viewModel.movies[indexPath.row])
+        navigateToDetails(movieModel: dataSourceArray[indexPath.row])
     }
 
     private func navigateToDetails(movieModel: NUMovieViewModel) {
@@ -79,25 +88,26 @@ extension NUHomeViewController: UITextFieldDelegate {
         loadingIndicator.alpha = 1
         loadingIndicator.startAnimating()
         if textField.text?.isEmpty ?? true {
-            contextTitleLabel.text = "Now playing"
             viewModel.nowPlaying(pageIndex: 1, completion: { (_, error) in
                 DispatchQueue.main.async {[weak self] in
                     guard let self = self else {
                         return
                     }
+                    self.searchMode = false
+                    self.dataSourceArray = self.viewModel.movies
                     self.loadingIndicator.stopAnimating()
                     self.collectionView.reloadData()
                 }
             })
         } else {
-            contextTitleLabel.text = "Search results"
             viewModel.search(keyword: textField.text ?? "") { (_, error) in
                 DispatchQueue.main.async {[weak self] in
                     guard let self = self else {
                         return
                     }
-
-                    if self.viewModel.movies.count == 0 {
+                    self.searchMode = true
+                    self.dataSourceArray = self.viewModel.searchResultMovies
+                    if self.viewModel.searchResultMovies.count == 0 {
                         self.contextTitleLabel.text = "No results"
                     }
                     self.loadingIndicator.stopAnimating()
