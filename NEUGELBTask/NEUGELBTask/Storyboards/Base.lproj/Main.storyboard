@@ -158,14 +158,14 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="dnA-M8-qoh" firstAttribute="trailing" secondItem="yVS-ix-B0P" secondAttribute="trailing" id="1dF-P0-YGQ"/>
+                            <constraint firstAttribute="trailing" secondItem="yVS-ix-B0P" secondAttribute="trailing" id="1dF-P0-YGQ"/>
                             <constraint firstItem="tvW-94-7OO" firstAttribute="trailing" secondItem="yVS-ix-B0P" secondAttribute="trailing" id="5bM-eg-GCd"/>
                             <constraint firstItem="tvW-94-7OO" firstAttribute="leading" secondItem="yVS-ix-B0P" secondAttribute="leading" id="EcT-mg-def"/>
                             <constraint firstAttribute="bottom" secondItem="yVS-ix-B0P" secondAttribute="bottom" id="U3r-n6-yIf"/>
                             <constraint firstItem="tvW-94-7OO" firstAttribute="height" secondItem="yVS-ix-B0P" secondAttribute="height" multiplier="1:1.4" id="Ydk-xW-FiA"/>
                             <constraint firstItem="tvW-94-7OO" firstAttribute="bottom" secondItem="yVS-ix-B0P" secondAttribute="bottom" id="iz3-Ql-gdO"/>
                             <constraint firstItem="yVS-ix-B0P" firstAttribute="top" secondItem="vAr-C2-BM3" secondAttribute="top" id="qug-xC-Vfl"/>
-                            <constraint firstItem="yVS-ix-B0P" firstAttribute="leading" secondItem="dnA-M8-qoh" secondAttribute="leading" id="z2G-g2-iDQ"/>
+                            <constraint firstItem="yVS-ix-B0P" firstAttribute="leading" secondItem="vAr-C2-BM3" secondAttribute="leading" id="z2G-g2-iDQ"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="dnA-M8-qoh"/>
                     </view>
