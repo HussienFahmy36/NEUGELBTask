@@ -32,8 +32,8 @@ class NUHomeViewModel {
     }
 
     func search(keyword: String, completion: @escaping ([NUMovieViewModel], _ errorMessage: String?) -> ()) {
+        searchResultMovies.removeAll()
         if keyword.count >= minimumSearchWordLength {
-            searchResultMovies.removeAll()
             worker.searchMovie(keyword: keyword) {[weak self] (response, error) in
                 if error != nil {
                     self?.searchResultMovies = []
