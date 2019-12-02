@@ -30,11 +30,11 @@ struct NUMovie: Codable {
     let popularity: Double
     let voteCount: Int
     let video: Bool
-    let posterPath: String
+    let posterPath: String?
     let id: Int
     let adult: Bool
     let backdropPath: String?
-    let originalLanguage: OriginalLanguage
+    let originalLanguage: String
     let originalTitle: String
     let genreIDS: [Int]
     let title: String
@@ -57,12 +57,3 @@ struct NUMovie: Codable {
         case releaseDate = "release_date"
     }
 }
-
-enum OriginalLanguage: String, Codable {
-    case en = "en"
-    case ja = "ja"
-    case ko = "ko"
-    case fr = "fr"
-    case es = "es"
-}
-

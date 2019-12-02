@@ -15,6 +15,9 @@ class NUHomeViewController: UIViewController {
     @IBOutlet weak var contextTitleLabel: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
+    var isSearching : Bool{
+        return !(searchTextField.text?.isEmpty ?? true)
+    }
     var dataSourceArray: [NUMovieViewModel] = []
     var searchMode: Bool = false {
         willSet(newValue) {
@@ -28,7 +31,6 @@ class NUHomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-
     }
 
     func setupUI() {
@@ -36,20 +38,8 @@ class NUHomeViewController: UIViewController {
         collectionView.delegate = self
         searchTextField.delegate = self
         contextTitleLabel.text = "Now playing"
-        loadingIndicator.startAnimating()
-        viewModel.nowPlaying(pageIndex: 1) { (_, error) in
-            DispatchQueue.main.async {[weak self] in
-                guard let self = self else {
-                    return
-                }
-                self.dataSourceArray = self.viewModel.movies
-                self.loadingIndicator.stopAnimating()
-                self.loadingIndicator.alpha = 0
-                self.collectionView.reloadData()
-            }
-        }
+        fetchNextPage()
     }
-
 }
 
 extension NUHomeViewController: UICollectionViewDataSource, UICollectionViewDelegate {
@@ -80,40 +70,52 @@ extension NUHomeViewController: UICollectionViewDataSource, UICollectionViewDele
         detailsViewController.viewModel = movieModel
         present(detailsViewController, animated: true, completion: nil)
     }
+
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if shouldFetchNextPage(cellIndex: indexPath.row) {
+            fetchNextPage()
+        }
+    }
 }
 
+// Pagination methods
+extension NUHomeViewController {
+    private func shouldFetchNextPage(cellIndex: Int) -> Bool {
+        return ((cellIndex == 0) && !isSearching) ? true : ((cellIndex == (dataSourceArray.count - 1)) && !isSearching)
+    }
 
-extension NUHomeViewController: UITextFieldDelegate {
-    func textFieldDidChangeSelection(_ textField: UITextField) {
-        loadingIndicator.alpha = 1
-        loadingIndicator.startAnimating()
-        if textField.text?.isEmpty ?? true {
-            viewModel.nowPlaying(pageIndex: 1, completion: { (_, error) in
-                DispatchQueue.main.async {[weak self] in
-                    guard let self = self else {
-                        return
-                    }
-                    self.searchMode = false
-                    self.dataSourceArray = self.viewModel.movies
-                    self.loadingIndicator.stopAnimating()
-                    self.collectionView.reloadData()
-                }
-            })
-        } else {
-            viewModel.search(keyword: textField.text ?? "") { (_, error) in
-                DispatchQueue.main.async {[weak self] in
-                    guard let self = self else {
-                        return
-                    }
-                    self.searchMode = true
-                    self.dataSourceArray = self.viewModel.searchResultMovies
-                    if self.viewModel.searchResultMovies.count == 0 {
-                        self.contextTitleLabel.text = "No results"
-                    }
-                    self.loadingIndicator.stopAnimating()
-                    self.collectionView.reloadData()
-                }
+    private func fetchNextPage() {
+        viewModel.fetchNextPage {[weak self] (movies, error) in
+            guard let self = self else {return}
+            self.renderMoviesList(moviesViewModels: movies)
+        }
+    }
+
+    private func renderMoviesList(moviesViewModels: [NUMovieViewModel] ) {
+        dataSourceArray = moviesViewModels
+        DispatchQueue.main.async {[weak self] in
+            guard let self = self else {return}
+            var indexPaths: [IndexPath] = []
+            for (index, _) in moviesViewModels.enumerated() {
+                indexPaths.append(IndexPath(row: index, section: 0))
             }
+            self.collectionView.insertItems(at: indexPaths)
+        }
+    }
+}
+
+//search
+extension NUHomeViewController: UITextFieldDelegate {
+    func textFieldDidEndEditing(_ textField: UITextField) {
+    
+    }
+    func textFieldDidChangeSelection(_ textField: UITextField) {
+        guard let keyword = textField.text else {
+            return
+        }
+        viewModel.search(keyword: keyword) { [weak self](movies, error) in
+            guard let self = self else {return}
+            self.renderMoviesList(moviesViewModels: movies)
         }
     }
 }

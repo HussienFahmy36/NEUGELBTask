@@ -20,7 +20,7 @@ class NUMoviesDBDataWorker {
     let codableParser = CodableJsonParser()
 
     func getNowPlaying(page: Int, completion: @escaping NUWorkerResponse) {
-        guard let url = buildURL(with: .NowPlaying) else {
+        guard let url = buildURL(with: .NowPlaying, page: page) else {
             return
         }
         networkLayer.downloadAsync(from: url) {[weak self] (data, error) in
@@ -43,6 +43,7 @@ class NUMoviesDBDataWorker {
         guard let url = buildURL(with: .SearchMovies, searchKeyword: keyword) else {
             return
         }
+        print("search url: \(url.absoluteString)")
         networkLayer.downloadAsync(from: url) {[weak self] (data, error) in
             guard let self = self else {
                 return
