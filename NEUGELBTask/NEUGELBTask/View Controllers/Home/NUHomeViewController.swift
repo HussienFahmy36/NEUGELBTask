@@ -81,7 +81,7 @@ extension NUHomeViewController: UICollectionViewDataSource, UICollectionViewDele
 // Pagination methods
 extension NUHomeViewController {
     private func shouldFetchNextPage(cellIndex: Int) -> Bool {
-        return ((cellIndex == 0) && !isSearching) ? true : ((cellIndex == (dataSourceArray.count - 1)) && !isSearching)
+        return cellIndex == (dataSourceArray.count - 1) && !isSearching
     }
 
     private func fetchNextPage() {
@@ -106,9 +106,6 @@ extension NUHomeViewController {
 
 //search
 extension NUHomeViewController: UITextFieldDelegate {
-    func textFieldDidEndEditing(_ textField: UITextField) {
-    
-    }
     func textFieldDidChangeSelection(_ textField: UITextField) {
         guard let keyword = textField.text else {
             return
