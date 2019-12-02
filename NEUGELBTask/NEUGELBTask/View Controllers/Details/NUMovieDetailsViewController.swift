@@ -28,15 +28,17 @@ class NUMovieDetailsViewController: UIViewController {
     private func initalizeView() {
         setupBackgroundViewColor()
         addLoadingIndicator()
-        guard let titleLabel = viewModel?.title, let descriptionLabel = viewModel?.description,
-            let rateValue = viewModel?.rate else {
-            return
-        }
-        movieTitleLabel.text = titleLabel
-        movieDescriptionLabel.text = descriptionLabel
-        rateLabel.text = "Rate: \(rateValue)"
+        initDetailsLabels()
+        initMovieDetailsView()
+        loadPosterImage()
+    }
+
+    private func initMovieDetailsView() {
         initailDetailsYPos = movieDetailsView.frame.origin.y
         movieDetailsView.transform = CGAffineTransform(translationX: 0, y: view.frame.height + movieDetailsView.frame.height)
+    }
+
+    private func loadPosterImage() {
         indicator.startAnimating()
         moviePosterImage.sd_setImage(with: viewModel?.posterURLOriginal) {[weak self] (_, _, _, _) in
             guard let self = self else {
@@ -44,10 +46,23 @@ class NUMovieDetailsViewController: UIViewController {
             }
             self.animatePosterImage {[weak self] in
                 guard let self = self else {return}
-                self.animateDetailsView()
+                self.moveUpDetailsView()
                 self.indicator.stopAnimating()
             }
         }
+    }
+
+    private func initDetailsLabels() {
+        guard let titleLabel = viewModel?.title, let descriptionLabel = viewModel?.description,
+            let rateValue = viewModel?.rate else {
+            return
+        }
+        movieTitleLabel.text = titleLabel
+        movieDescriptionLabel.text = descriptionLabel
+        rateLabel.text = "Rate: \(rateValue)"
+        movieTitleLabel.alpha = 0
+        movieDescriptionLabel.alpha = 0
+        rateLabel.alpha = 0
     }
 
     private func addLoadingIndicator() {
@@ -59,6 +74,7 @@ class NUMovieDetailsViewController: UIViewController {
     private func setupBackgroundViewColor() {
         view.backgroundColor = UIColor(white: 0, alpha: 0.7)
     }
+
     private func animatePosterImage(completion: @escaping () -> ()) {
         moviePosterImage.alpha = 0
         self.moviePosterImage.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
@@ -72,12 +88,21 @@ class NUMovieDetailsViewController: UIViewController {
         }
     }
 
-    private func animateDetailsView() {
+    private func moveUpDetailsView() {
         UIView.animate(withDuration: 0.7, animations: {[weak self] in
             guard let self = self else {return}
             self.movieDetailsView.transform = CGAffineTransform(translationX: 0, y: 0)
 
-        }, completion: nil)
+        }, completion: {(finished) in
+            if finished {
+                UIView.animate(withDuration: 0.3) {[weak self] in
+                    guard let self = self else {return}
+                    self.movieTitleLabel.alpha = 1
+                    self.movieDescriptionLabel.alpha = 1
+                    self.rateLabel.alpha = 1
+                }
+            }
+        })
     }
 
 }
