@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3A10A31123950CF000A4B40F /* NUMovieDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A10A31023950CF000A4B40F /* NUMovieDetailsViewController.swift */; };
 		3A924134239292C200E84C13 /* NetworkLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A924132239292C200E84C13 /* NetworkLayer.swift */; };
 		3A924135239292C200E84C13 /* CodableJsonParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A924133239292C200E84C13 /* CodableJsonParser.swift */; };
 		3A924138239294B000E84C13 /* NetworkLayerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A924137239294B000E84C13 /* NetworkLayerTests.swift */; };
@@ -38,6 +39,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3A10A31023950CF000A4B40F /* NUMovieDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NUMovieDetailsViewController.swift; sourceTree = "<group>"; };
 		3A924132239292C200E84C13 /* NetworkLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkLayer.swift; sourceTree = "<group>"; };
 		3A924133239292C200E84C13 /* CodableJsonParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodableJsonParser.swift; sourceTree = "<group>"; };
 		3A924137239294B000E84C13 /* NetworkLayerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkLayerTests.swift; sourceTree = "<group>"; };
@@ -95,6 +97,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		3A10A30F23950CD700A4B40F /* Details */ = {
+			isa = PBXGroup;
+			children = (
+				3A10A31023950CF000A4B40F /* NUMovieDetailsViewController.swift */,
+			);
+			path = Details;
+			sourceTree = "<group>";
+		};
 		3A924131239292C200E84C13 /* Network */ = {
 			isa = PBXGroup;
 			children = (
@@ -132,6 +142,7 @@
 		3A9241422393D05B00E84C13 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				3A10A30F23950CD700A4B40F /* Details */,
 				3ACF2CE92393DAFE004FE106 /* Home */,
 			);
 			path = "View Controllers";
@@ -227,7 +238,6 @@
 				5A0E8110629C906C1E12ED07 /* Pods-NEUGELBTaskTests.debug.xcconfig */,
 				B9746E99B6A98DA1A94A20A7 /* Pods-NEUGELBTaskTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -402,6 +412,7 @@
 				3A92413D2393B55300E84C13 /* NUMoviesResponse.swift in Sources */,
 				3A924134239292C200E84C13 /* NetworkLayer.swift in Sources */,
 				3ACF2CF02393DC7D004FE106 /* NUMovieViewModel.swift in Sources */,
+				3A10A31123950CF000A4B40F /* NUMovieDetailsViewController.swift in Sources */,
 				3AEFFCC923928B3B0097834D /* NUHomeViewController.swift in Sources */,
 				3AEFFCC523928B3B0097834D /* AppDelegate.swift in Sources */,
 				3A924135239292C200E84C13 /* CodableJsonParser.swift in Sources */,

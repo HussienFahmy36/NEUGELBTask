@@ -25,6 +25,7 @@ class NUHomeViewController: UIViewController {
     func setupUI() {
         collectionView.dataSource = self
         collectionView.delegate = self
+        contextTitleLabel.text = "Now playing"
         viewModel.nowPlaying(pageIndex: 1) { (movies, error) in
             DispatchQueue.main.async {[weak self] in
                 guard let self = self else {
@@ -52,5 +53,17 @@ extension NUHomeViewController: UICollectionViewDataSource, UICollectionViewDele
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return viewModel.movies.count
+    }
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        navigateToDetails(movieModel: viewModel.movies[indexPath.row])
+    }
+
+    private func navigateToDetails(movieModel: NUMovieViewModel) {
+        guard let detailsViewController = storyboard?.instantiateViewController(identifier: "NUMovieDetailsViewController") as? NUMovieDetailsViewController else {
+            return
+        }
+        detailsViewController.viewModel = movieModel
+        present(detailsViewController, animated: true, completion: nil)
     }
 }

@@ -8,7 +8,11 @@
 
 import Foundation
 struct NUMovieViewModel {
-    
+
+
+    let title: String?
+    let description: String?
+    let rate: Double?
     let posterURLSmall: URL?
     let posterURLMedium: URL?
 
@@ -16,13 +20,16 @@ struct NUMovieViewModel {
         let base = "https://image.tmdb.org/t/p"
         let posterEndPointSize = "/w200"
         let bannerEndPointSize = "/w500"
+        title = model.title
+        description = model.overview
+        rate = model.popularity
         guard let urlForPoster = URL(string: base + posterEndPointSize + model.posterPath),
              let urlForBanner = URL(string: base + bannerEndPointSize + model.posterPath) else {
             posterURLMedium = nil
             posterURLSmall = nil
             return
         }
-        posterURLMedium = urlForPoster
-        posterURLSmall = urlForBanner
-    }
+        posterURLMedium = urlForBanner
+        posterURLSmall = urlForPoster
+            }
 }
