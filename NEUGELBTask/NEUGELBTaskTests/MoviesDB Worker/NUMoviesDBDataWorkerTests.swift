@@ -55,7 +55,7 @@ class NUMoviesDBDataWorkerTests: XCTestCase {
 
     func testSearchMovie() {
         let expectationObject = expectation(description: "search movie")
-        let movie = "Ford vs Ferrari"
+        let movie = "Ford"
         dataWorker?.searchMovie(keyword: movie, completion: { (response, error) in
             expectationObject.fulfill()
             XCTAssertNil(error)

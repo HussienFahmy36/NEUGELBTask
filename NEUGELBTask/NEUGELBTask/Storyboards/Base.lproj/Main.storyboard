@@ -48,6 +48,10 @@
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="25" minY="0.0" maxX="25" maxY="0.0"/>
                                 </collectionViewFlowLayout>
+                                <activityIndicatorView key="backgroundView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" id="Nb7-Gt-ZZP">
+                                    <rect key="frame" x="0.0" y="0.0" width="404" height="661"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                </activityIndicatorView>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="NUMovieCell" id="G3i-rD-zvv" customClass="NUMovieCell" customModule="NEUGELBTask" customModuleProvider="target">
                                         <rect key="frame" x="25" y="0.0" width="110" height="180"/>
@@ -99,6 +103,7 @@
                     <connections>
                         <outlet property="collectionView" destination="Jt7-Ux-5qv" id="bfw-Mp-0sD"/>
                         <outlet property="contextTitleLabel" destination="SVt-Cc-0h8" id="iLj-7e-4QQ"/>
+                        <outlet property="loadingIndicator" destination="Nb7-Gt-ZZP" id="XwK-Xg-0LT"/>
                         <outlet property="searchTextField" destination="ERZ-q3-ihR" id="PMP-Lf-1cu"/>
                     </connections>
                 </viewController>
@@ -132,22 +137,21 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hjL-zE-Vsi">
-                                        <rect key="frame" x="191" y="317" width="42" height="21"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rate" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hjL-zE-Vsi">
+                                        <rect key="frame" x="189.5" y="171.5" width="35" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstItem="hjL-zE-Vsi" firstAttribute="centerX" secondItem="tvW-94-7OO" secondAttribute="centerX" id="6gx-Cc-b9R"/>
                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="3ir-Db-4Vp" secondAttribute="trailing" constant="35" id="CSk-We-TKW"/>
                                     <constraint firstItem="3ir-Db-4Vp" firstAttribute="leading" secondItem="tvW-94-7OO" secondAttribute="leading" constant="35" id="Hf7-gB-q5K"/>
                                     <constraint firstItem="3ir-Db-4Vp" firstAttribute="top" secondItem="8cP-vA-geb" secondAttribute="bottom" constant="34.5" id="Rw0-Ih-z4Q"/>
-                                    <constraint firstAttribute="trailing" secondItem="hjL-zE-Vsi" secondAttribute="trailing" constant="181" id="XpJ-IY-5nY"/>
                                     <constraint firstItem="8cP-vA-geb" firstAttribute="centerX" secondItem="tvW-94-7OO" secondAttribute="centerX" id="Z9W-RB-sIf"/>
-                                    <constraint firstItem="hjL-zE-Vsi" firstAttribute="top" secondItem="tvW-94-7OO" secondAttribute="top" constant="317" id="ebK-J4-qkG"/>
-                                    <constraint firstItem="hjL-zE-Vsi" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="tvW-94-7OO" secondAttribute="leading" symbolic="YES" id="nJ2-a9-Tz4"/>
+                                    <constraint firstItem="hjL-zE-Vsi" firstAttribute="top" secondItem="3ir-Db-4Vp" secondAttribute="bottom" constant="60" id="ebK-J4-qkG"/>
                                     <constraint firstItem="8cP-vA-geb" firstAttribute="top" secondItem="tvW-94-7OO" secondAttribute="top" constant="30" id="yrn-iL-oU1"/>
                                 </constraints>
                             </view>
@@ -170,6 +174,7 @@
                         <outlet property="movieDetailsView" destination="tvW-94-7OO" id="ZfB-Mf-RgW"/>
                         <outlet property="moviePosterImage" destination="yVS-ix-B0P" id="gYg-Yj-4m2"/>
                         <outlet property="movieTitleLabel" destination="8cP-vA-geb" id="Tee-Ay-3FL"/>
+                        <outlet property="rateLabel" destination="hjL-zE-Vsi" id="fSn-ZR-chj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iWn-MX-qur" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

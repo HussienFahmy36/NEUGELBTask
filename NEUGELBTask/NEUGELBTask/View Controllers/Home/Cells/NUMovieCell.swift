@@ -17,7 +17,7 @@ class NUMovieCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         movieBannerImage.layer.cornerRadius = 4
-        movieBannerImage.layer.masksToBounds = true
+        movieBannerImage.clipsToBounds = true
     }
     func config(viewModel: NUMovieViewModel) {
         loadingIndicator.alpha = 1

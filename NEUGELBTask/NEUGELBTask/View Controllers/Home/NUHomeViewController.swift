@@ -15,6 +15,7 @@ class NUHomeViewController: UIViewController {
     @IBOutlet weak var contextTitleLabel: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
     
+    @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,12 +26,16 @@ class NUHomeViewController: UIViewController {
     func setupUI() {
         collectionView.dataSource = self
         collectionView.delegate = self
+        searchTextField.delegate = self
         contextTitleLabel.text = "Now playing"
-        viewModel.nowPlaying(pageIndex: 1) { (movies, error) in
+        loadingIndicator.startAnimating()
+        viewModel.nowPlaying(pageIndex: 1) { (_, error) in
             DispatchQueue.main.async {[weak self] in
                 guard let self = self else {
                     return
                 }
+                self.loadingIndicator.stopAnimating()
+                self.loadingIndicator.alpha = 0
                 self.collectionView.reloadData()
             }
         }
@@ -65,5 +70,34 @@ extension NUHomeViewController: UICollectionViewDataSource, UICollectionViewDele
         }
         detailsViewController.viewModel = movieModel
         present(detailsViewController, animated: true, completion: nil)
+    }
+}
+
+
+extension NUHomeViewController: UITextFieldDelegate {
+    func textFieldDidChangeSelection(_ textField: UITextField) {
+        loadingIndicator.alpha = 1
+        loadingIndicator.startAnimating()
+        if textField.text?.isEmpty ?? true {
+            viewModel.nowPlaying(pageIndex: 1, completion: { (_, error) in
+                DispatchQueue.main.async {[weak self] in
+                    guard let self = self else {
+                        return
+                    }
+                    self.loadingIndicator.stopAnimating()
+                    self.collectionView.reloadData()
+                }
+            })
+        } else {
+            viewModel.search(keyword: textField.text ?? "") { (_, error) in
+                DispatchQueue.main.async {[weak self] in
+                    guard let self = self else {
+                        return
+                    }
+                    self.loadingIndicator.stopAnimating()
+                    self.collectionView.reloadData()
+                }
+            }
+        }
     }
 }

@@ -14,22 +14,22 @@ struct NUMovieViewModel {
     let description: String?
     let rate: Double?
     let posterURLSmall: URL?
-    let posterURLMedium: URL?
+    let posterURLOriginal: URL?
 
     init(model: NUMovie) {
         let base = "https://image.tmdb.org/t/p"
         let posterEndPointSize = "/w200"
-        let bannerEndPointSize = "/w500"
+        let bannerEndPointSize = "/original"
         title = model.title
         description = model.overview
         rate = model.popularity
         guard let urlForPoster = URL(string: base + posterEndPointSize + model.posterPath),
              let urlForBanner = URL(string: base + bannerEndPointSize + model.posterPath) else {
-            posterURLMedium = nil
+            posterURLOriginal = nil
             posterURLSmall = nil
             return
         }
-        posterURLMedium = urlForBanner
+        posterURLOriginal = urlForBanner
         posterURLSmall = urlForPoster
             }
 }
