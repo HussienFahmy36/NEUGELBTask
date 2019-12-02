@@ -37,7 +37,7 @@ class NUHomeViewModel {
     func search(keyword: String, completion: @escaping NUResponseBlock) {
         nextPageToFetch = 0
         if keyword.isEmpty {
-            completion([], nil)
+            completion(self.movies, nil)
         }
         if keyword.count >= minimumSearchWordLength {
             worker.searchMovie(keyword: keyword) {[weak self] (response, error) in
