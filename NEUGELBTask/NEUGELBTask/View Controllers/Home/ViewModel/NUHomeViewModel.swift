@@ -34,7 +34,8 @@ class NUHomeViewModel {
         if keyword.count >= minimumSearchWordLength {
             movies.removeAll()
             worker.searchMovie(keyword: keyword) {[weak self] (response, error) in
-                            if error != nil {
+                if error != nil {
+                    self?.movies = []
                     completion([], error!.rawValue)
                 }
                 guard let self = self else {
@@ -42,6 +43,9 @@ class NUHomeViewModel {
                 }
                 guard let moviesArray = response?.results else {
                     return
+                }
+                if moviesArray.count == 0 {
+                    self.movies = []
                 }
                 for movieModel in moviesArray {
                     self.movies.append(NUMovieViewModel(model: movieModel))

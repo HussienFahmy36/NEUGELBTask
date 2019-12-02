@@ -79,6 +79,7 @@ extension NUHomeViewController: UITextFieldDelegate {
         loadingIndicator.alpha = 1
         loadingIndicator.startAnimating()
         if textField.text?.isEmpty ?? true {
+            contextTitleLabel.text = "Now playing"
             viewModel.nowPlaying(pageIndex: 1, completion: { (_, error) in
                 DispatchQueue.main.async {[weak self] in
                     guard let self = self else {
@@ -89,10 +90,15 @@ extension NUHomeViewController: UITextFieldDelegate {
                 }
             })
         } else {
+            contextTitleLabel.text = "Search results"
             viewModel.search(keyword: textField.text ?? "") { (_, error) in
                 DispatchQueue.main.async {[weak self] in
                     guard let self = self else {
                         return
+                    }
+
+                    if self.viewModel.movies.count == 0 {
+                        self.contextTitleLabel.text = "No results"
                     }
                     self.loadingIndicator.stopAnimating()
                     self.collectionView.reloadData()
