@@ -107,6 +107,7 @@ extension NUHomeViewController {
 //search
 extension NUHomeViewController: UITextFieldDelegate {
     func textFieldDidChangeSelection(_ textField: UITextField) {
+        collectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
         guard let keyword = textField.text else {
             return
         }
