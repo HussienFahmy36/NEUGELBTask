@@ -78,7 +78,7 @@ class NUMovieDetailsViewController: UIViewController {
     private func animatePosterImage(completion: @escaping () -> ()) {
         moviePosterImage.alpha = 0
         self.moviePosterImage.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
-        UIView.animate(withDuration: 0.5) {[weak self] in
+        UIView.animate(withDuration: NUAnimationsDurationConstants.MovieDetailsScreen.posterScale) {[weak self] in
             guard let self = self else {
                 return
             }
@@ -89,13 +89,13 @@ class NUMovieDetailsViewController: UIViewController {
     }
 
     private func moveUpDetailsView() {
-        UIView.animate(withDuration: 0.7, animations: {[weak self] in
+        UIView.animate(withDuration: NUAnimationsDurationConstants.MovieDetailsScreen.moveDetailsViewUp, animations: {[weak self] in
             guard let self = self else {return}
             self.movieDetailsView.transform = CGAffineTransform(translationX: 0, y: 0)
 
         }, completion: {(finished) in
             if finished {
-                UIView.animate(withDuration: 0.3) {[weak self] in
+                UIView.animate(withDuration: NUAnimationsDurationConstants.MovieDetailsScreen.showLabelsInDetailsView) {[weak self] in
                     guard let self = self else {return}
                     self.movieTitleLabel.alpha = 1
                     self.movieDescriptionLabel.alpha = 1
