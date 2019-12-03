@@ -16,15 +16,24 @@ class NUHomeViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
     var isSearching : Bool{
-        return !(searchTextField.text?.isEmpty ?? true)
+        get {
+            let searchTextNotEmpty = !(searchTextField.text?.isEmpty ?? true)
+            if searchTextNotEmpty {
+                self.contextTitleLabel.text = NUStringsConstants.searchResults
+            } else {
+                self.contextTitleLabel.text = NUStringsConstants.nowPlaying
+            }
+            return searchTextNotEmpty
+        }
     }
+
     var dataSourceArray: [NUMovieViewModel] = []
     var searchMode: Bool = false {
         willSet(newValue) {
             if newValue {
-                self.contextTitleLabel.text = "Search results"
+                self.contextTitleLabel.text = NUStringsConstants.searchResults
             } else {
-                self.contextTitleLabel.text = "Now playing"
+                self.contextTitleLabel.text = NUStringsConstants.nowPlaying
             }
         }
     }
@@ -37,7 +46,6 @@ class NUHomeViewController: UIViewController {
         collectionView.dataSource = self
         collectionView.delegate = self
         searchTextField.delegate = self
-        contextTitleLabel.text = "Now playing"
         fetchNextPage()
     }
 }
@@ -81,17 +89,17 @@ extension NUHomeViewController: UICollectionViewDataSource, UICollectionViewDele
 // Pagination methods
 extension NUHomeViewController {
     private func shouldFetchNextPage(cellIndex: Int) -> Bool {
-        return cellIndex == (dataSourceArray.count - 1) && !isSearching
+        return !isSearching && (cellIndex == (dataSourceArray.count - 1))
     }
 
     private func fetchNextPage() {
         viewModel.fetchNextPage {[weak self] (movies, error) in
             guard let self = self else {return}
-            self.renderMoviesList(moviesViewModels: movies)
+            self.display(moviesViewModels: movies)
         }
     }
 
-    private func renderMoviesList(moviesViewModels: [NUMovieViewModel] ) {
+    private func display(moviesViewModels: [NUMovieViewModel] ) {
         dataSourceArray = moviesViewModels
         DispatchQueue.main.async {[weak self] in
             guard let self = self else {return}
@@ -113,7 +121,7 @@ extension NUHomeViewController: UITextFieldDelegate {
         }
         viewModel.search(keyword: keyword) { [weak self](movies, error) in
             guard let self = self else {return}
-            self.renderMoviesList(moviesViewModels: movies)
+            self.display(moviesViewModels: movies)
         }
     }
 }

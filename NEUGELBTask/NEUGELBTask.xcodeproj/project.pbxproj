@@ -15,6 +15,7 @@
 		3A92413D2393B55300E84C13 /* NUMoviesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A92413C2393B55300E84C13 /* NUMoviesResponse.swift */; };
 		3A9241412393BE3100E84C13 /* NUMoviesDBDataWorkerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9241402393BE3100E84C13 /* NUMoviesDBDataWorkerTests.swift */; };
 		3ABCE9BB239665C9007C82FC /* NUAnimationsConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ABCE9BA239665C9007C82FC /* NUAnimationsConstants.swift */; };
+		3ABCE9BD239667D3007C82FC /* NUStringsConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ABCE9BC239667D3007C82FC /* NUStringsConstants.swift */; };
 		3ACF2CEB2393DB3D004FE106 /* NUMovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ACF2CEA2393DB3D004FE106 /* NUMovieCell.swift */; };
 		3ACF2CEE2393DC41004FE106 /* NUHomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ACF2CED2393DC41004FE106 /* NUHomeViewModel.swift */; };
 		3ACF2CF02393DC7D004FE106 /* NUMovieViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ACF2CEF2393DC7D004FE106 /* NUMovieViewModel.swift */; };
@@ -48,6 +49,7 @@
 		3A92413C2393B55300E84C13 /* NUMoviesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NUMoviesResponse.swift; sourceTree = "<group>"; };
 		3A9241402393BE3100E84C13 /* NUMoviesDBDataWorkerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NUMoviesDBDataWorkerTests.swift; sourceTree = "<group>"; };
 		3ABCE9BA239665C9007C82FC /* NUAnimationsConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NUAnimationsConstants.swift; sourceTree = "<group>"; };
+		3ABCE9BC239667D3007C82FC /* NUStringsConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NUStringsConstants.swift; sourceTree = "<group>"; };
 		3ACF2CEA2393DB3D004FE106 /* NUMovieCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NUMovieCell.swift; sourceTree = "<group>"; };
 		3ACF2CED2393DC41004FE106 /* NUHomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NUHomeViewModel.swift; sourceTree = "<group>"; };
 		3ACF2CEF2393DC7D004FE106 /* NUMovieViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NUMovieViewModel.swift; sourceTree = "<group>"; };
@@ -164,6 +166,7 @@
 			isa = PBXGroup;
 			children = (
 				3ABCE9BA239665C9007C82FC /* NUAnimationsConstants.swift */,
+				3ABCE9BC239667D3007C82FC /* NUStringsConstants.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -424,6 +427,7 @@
 				3ABCE9BB239665C9007C82FC /* NUAnimationsConstants.swift in Sources */,
 				3A924134239292C200E84C13 /* NetworkLayer.swift in Sources */,
 				3ACF2CF02393DC7D004FE106 /* NUMovieViewModel.swift in Sources */,
+				3ABCE9BD239667D3007C82FC /* NUStringsConstants.swift in Sources */,
 				3A10A31123950CF000A4B40F /* NUMovieDetailsViewController.swift in Sources */,
 				3AEFFCC923928B3B0097834D /* NUHomeViewController.swift in Sources */,
 				3AEFFCC523928B3B0097834D /* AppDelegate.swift in Sources */,
