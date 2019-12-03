@@ -71,9 +71,7 @@ class NUMoviesDBDataWorker {
             let keywordParam =  "&query=" + "\(searchKeywordWithPercent ?? "")"
             urlString += keywordParam
         }
-        guard let url = URL(string: urlString) else {
-            return nil
-        }
-        return url
+        return "\(urlString)"
     }
 }
+

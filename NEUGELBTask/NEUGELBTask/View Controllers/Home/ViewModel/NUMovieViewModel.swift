@@ -23,14 +23,12 @@ struct NUMovieViewModel {
         title = model.title
         description = model.overview
         rate = model.voteAverage
-        guard let posterPath = model.posterPath,
-            let urlForPoster = URL(string: base + posterEndPointSize + posterPath),
-             let urlForBanner = URL(string: base + bannerEndPointSize + posterPath) else {
+        guard let posterPath = model.posterPath else {
             posterURLOriginal = nil
             posterURLSmall = nil
             return
         }
-        posterURLOriginal = urlForBanner
-        posterURLSmall = urlForPoster
-            }
+        posterURLOriginal = "\(base)\(bannerEndPointSize)\(posterPath)"
+        posterURLSmall = "\(base)\(posterEndPointSize)\(posterPath)"
+        }
 }
