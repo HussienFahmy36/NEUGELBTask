@@ -146,7 +146,6 @@
 		3A9241422393D05B00E84C13 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				3ABCE9B9239665A4007C82FC /* Constants */,
 				3A10A30F23950CD700A4B40F /* Details */,
 				3ACF2CE92393DAFE004FE106 /* Home */,
 			);
@@ -162,7 +161,7 @@
 			path = Storyboards;
 			sourceTree = "<group>";
 		};
-		3ABCE9B9239665A4007C82FC /* Constants */ = {
+		3ABCE9BE23966C79007C82FC /* Constants */ = {
 			isa = PBXGroup;
 			children = (
 				3ABCE9BA239665C9007C82FC /* NUAnimationsConstants.swift */,
@@ -221,6 +220,7 @@
 		3AEFFCC323928B3A0097834D /* NEUGELBTask */ = {
 			isa = PBXGroup;
 			children = (
+				3ABCE9BE23966C79007C82FC /* Constants */,
 				3A9241432393D06200E84C13 /* Storyboards */,
 				3A9241422393D05B00E84C13 /* View Controllers */,
 				3A9241392393B4C000E84C13 /* Workers */,
