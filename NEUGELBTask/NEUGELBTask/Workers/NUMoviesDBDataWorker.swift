@@ -14,8 +14,8 @@ enum NUWorkerEndPoints: String {
 
 typealias NUWorkerResponse = (NUMoviesResponse?, _ error: NUErrorMessages?) -> ()
 class NUMoviesDBDataWorker {
-    let baseURLV3 = "https://api.themoviedb.org/3"
-    var token = "1330e694c7c90b77eee730df6ebb99fd"
+    let baseURLV3 = NUStringsConstants.imdbAPIBaseURL
+    var token = NUStringsConstants.apiToken
     let networkLayer = NetworkLayer()
     let codableParser = CodableJsonParser()
 
@@ -43,7 +43,6 @@ class NUMoviesDBDataWorker {
         guard let url = buildURL(with: .SearchMovies, searchKeyword: keyword) else {
             return
         }
-        print("search url: \(url.absoluteString)")
         networkLayer.downloadAsync(from: url) {[weak self] (data, error) in
             guard let self = self else {
                 return

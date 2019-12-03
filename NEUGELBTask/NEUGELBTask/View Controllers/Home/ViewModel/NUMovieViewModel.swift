@@ -17,7 +17,7 @@ struct NUMovieViewModel {
     let posterURLOriginal: URL?
 
     init(model: NUMovie) {
-        let base = "https://image.tmdb.org/t/p"
+        let base = NUStringsConstants.baseURLForImage
         let posterEndPointSize = "/w200"
         let bannerEndPointSize = "/original"
         title = model.title

@@ -59,7 +59,7 @@ class NUMovieDetailsViewController: UIViewController {
         }
         movieTitleLabel.text = titleLabel
         movieDescriptionLabel.text = descriptionLabel
-        rateLabel.text = "Rate: \(rateValue)"
+        rateLabel.text =  NUStringsConstants.vote +  "\(rateValue)"
         movieTitleLabel.alpha = 0
         movieDescriptionLabel.alpha = 0
         rateLabel.alpha = 0
