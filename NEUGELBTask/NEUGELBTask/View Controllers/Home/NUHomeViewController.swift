@@ -60,11 +60,11 @@ extension NUHomeViewController: UICollectionViewDataSource, UICollectionViewDele
     }
 
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
+        1
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return dataSourceArray.count
+        dataSourceArray.count
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -89,7 +89,7 @@ extension NUHomeViewController: UICollectionViewDataSource, UICollectionViewDele
 // Pagination methods
 extension NUHomeViewController {
     private func shouldFetchNextPage(cellIndex: Int) -> Bool {
-        return !isSearching && (cellIndex == (dataSourceArray.count - 1))
+        !isSearching && (cellIndex == (dataSourceArray.count - 1))
     }
 
     private func fetchNextPage() {
